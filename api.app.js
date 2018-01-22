@@ -3,7 +3,6 @@
 process.title = 'crud.api';
 module.exports = init;
 
-var glob = require('glob');
 var async = require('async');
 var _ = require('underscore');
 var express = require('express');
@@ -11,7 +10,7 @@ var app = express();
 var validateAccount = require('./auth/validateAccount.js');
 
 const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
+var assert = require('assert');
 
 const mongoUrl = 'mongodb://localhost:27017';
 const dbName = 'myproject';
@@ -42,10 +41,10 @@ function init() {
       }
     }
   );
-  // app.get('/', require('./index.js'));
-  app.get('/products', require('./products/get.js'));
-  app.get('/products/:id', require('./products/getById.js'));
-  app.post('/products', require('./products/post.js'));
-  app.put('/products/:id', require('./products/putById.js'));
-  app.delete('/products/:id', require('./products/deleteById.js'));
+  app.get('/', require('./test.js'));
+  app.get('/products', validateAccount, require('./products/get.js'));
+  app.get('/products/:id', validateAccount, require('./products/getById.js'));
+  app.post('/products', validateAccount, require('./products/post.js'));
+  app.put('/products/:id', validateAccount, require('./products/putById.js'));
+  app.delete('/products/:id', validateAccount, require('./products/deleteById.js'));
 }
