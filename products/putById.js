@@ -13,7 +13,7 @@ function putById(req, res) {
     res: res
   };
   async.series([
-    _getProductById.bind(null, bag)
+    _putProductById.bind(null, bag)
   ],
     function (err) {
       if (err)
@@ -24,7 +24,7 @@ function putById(req, res) {
   );
 }
 
-function _getProductById(bag, next) {
+function _putProductById(bag, next) {
   var update = {};
   if (_.has(bag.req.body, 'name'))
     update.name = bag.req.body.name;
