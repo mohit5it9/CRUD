@@ -46,4 +46,5 @@ function init() {
   app.get('/products', require('./products/get.js'));
   app.get('/products/:id', require('./products/getById.js'));
   app.post('/products', require('./products/post.js'));
+  app.put('/products/:id', require('./products/putById.js'));
 }

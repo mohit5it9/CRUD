@@ -26,7 +26,7 @@ function getById(req, res) {
 
 function _getProductById(bag, next) {
 	var collection = db.collection('documents');
-	collection.findOne(ObjectId(bag.req.params.id),
+	collection.findOne({_id: ObjectId(bag.req.params.id)},
 		function(err, results) {
 			if (err)
 				return next(err);
