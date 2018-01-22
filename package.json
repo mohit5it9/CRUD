@@ -1,0 +1,24 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "description": "Simple CRUD API for managing products",
+  "main": "api.app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "crud",
+    "api",
+    "rest"
+  ],
+  "author": "mohit5it9",
+  "license": "MIT",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "async": "^2.6.0",
+    "express": "^4.16.2",
+    "glob": "^7.1.2",
+    "mongodb": "^3.0.1",
+    "underscore": "^1.8.3"
+  }
+}
