@@ -29,7 +29,6 @@ function _getProducts(bag, next) {
 		if (err)
 			return next(err);
 		bag.res = results;
-		console.log(results);
 		return next();
 	});
 }
