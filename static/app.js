@@ -1,6 +1,6 @@
 'use strict';
 
-var www = angular.module('www', ['ui.bootstrap']);
+var www = angular.module('www', ['ui.bootstrap', 'ui.router']);
 
 www.config(['$stateProvider', '$locationProvider',
   '$httpProvider', '$urlRouterProvider',
@@ -25,7 +25,7 @@ www.config(['$stateProvider', '$locationProvider',
 
     $stateProvider.state('home', {
       url: '/',
-      templateUrl: SRC_PATH + 'home.html',
+      templateUrl: 'scripts/home.html',
       controller: 'homeCtrl'
     });
 
@@ -41,5 +41,3 @@ www.config(['$stateProvider', '$locationProvider',
     });
   }
 ]);
-
-www.constant('SRC_PATH', '/scripts/');

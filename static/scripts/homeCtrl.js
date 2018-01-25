@@ -1,12 +1,12 @@
 (function () {
   'use strict';
 
-  www.controller('loginCtrl', ['$scope', '$stateParams', '$q', '$state',
-    loginCtrl
+  www.controller('homeCtrl', ['$scope', '$stateParams', '$q', '$state',
+    homeCtrl
   ]);
 
 
-  function loginCtrl($scope, $stateParams, $q, $state) {
+  function homeCtrl($scope, $stateParams, $q, $state) {
     console.log('added');
   }
 }());
