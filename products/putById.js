@@ -5,13 +5,19 @@ module.exports = self;
 
 var async = require('async');
 var _ = require('underscore');
-var ObjectId = require('mongodb').ObjectId;
+var ObjectId = require('mongoose').Types.ObjectId;
+var productModel = require('./model.js');
 
 function putById(req, res) {
   var bag = {
     req: req,
     res: res
   };
+
+  if (!ObjectId.isValid(bag.req.params.id)) {
+    return res.send('invalid ObjectId passed in the params');
+  }
+
   async.series([
     _putProductById.bind(null, bag)
   ],
@@ -32,10 +38,10 @@ function _putProductById(bag, next) {
     update.quantity = bag.req.body.quantity;
   if (_.has(bag.req.body, 'code'))
     update.code = bag.req.body.code;
-  if (_.has(bag.req.body, 'expiryDate'))
-    update.expiryDate = bag.req.body.expiryDate;
-  var collection = db.collection('documents');
-  collection.updateOne({_id: ObjectId(bag.req.params.id)}, {$set: update}, {upsert: false},
+  if (_.has(bag.req.body, 'expiry'))
+    update.expiry = bag.req.body.expiry;
+  productModel.findOneAndUpdate(
+    {_id: bag.req.params.id}, {$set: update},
     function(err, results) {
       if (err)
         return next(err);

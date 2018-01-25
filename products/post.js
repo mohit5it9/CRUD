@@ -5,6 +5,7 @@ module.exports = self;
 
 var async = require('async');
 var _ = require('underscore');
+var productModel = require('./model.js');
 
 function post(req, res) {
   var bag = {
@@ -25,8 +26,7 @@ function post(req, res) {
 }
 
 function _postProduct(bag, next) {
-  var collection = db.collection('documents');
-  collection.insert(bag.req.body,
+  productModel.create(bag.req.body,
     function (err, results) {
       if (err)
         return next(err);

@@ -5,12 +5,15 @@ module.exports = self;
 
 var async = require('async');
 var _ = require('underscore');
+var ObjectId = require('mongoose').Types.ObjectId;
+var productModel = require('./model.js');
 
 function get(req, res) {
   var bag = {
     req: req,
     res: res
   };
+
   async.series([
     _getProducts.bind(null, bag)
   ],
@@ -24,8 +27,8 @@ function get(req, res) {
 }
 
 function _getProducts(bag, next) {
-  var collection = db.collection('documents');
-  collection.find({}).toArray(function(err, results) {
+  productModel.find({},
+    function(err, results) {
     if (err)
       return next(err);
     bag.res = results;

@@ -5,7 +5,8 @@ module.exports = self;
 
 var async = require('async');
 var _ = require('underscore');
-var ObjectId = require('mongodb').ObjectId;
+var productModel = require('./model.js');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 function getById(req, res) {
   var bag = {
@@ -19,14 +20,15 @@ function getById(req, res) {
       if (err)
         return res.send(err);
 
-      return res.send(bag.res);
+      console.log('end');
+
+      return res.send(bag.res || {});
     }
   );
 }
 
 function _getProductById(bag, next) {
-  var collection = db.collection('documents');
-  collection.findOne({_id: ObjectId(bag.req.params.id)},
+  productModel.findOne({_id: bag.req.params.id},
     function(err, results) {
       if (err)
         return next(err);
